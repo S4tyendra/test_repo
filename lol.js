@@ -64,12 +64,12 @@ const {
         
           if(statusCode !== DisconnectReason.loggedOut) {
             console.log('Reconnecting...')
-            setTimeout(() => start(), 8000)
+            setTimeout(() => start(), 3000)
           } else {
             console.log('Logged out')
             await fs.remove('session')
             console.log('Starting...')
-            setTimeout(() => start(), 8000)
+            setTimeout(() => start(), 3000)
           }
         }
       
