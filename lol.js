@@ -78,14 +78,26 @@ const start = async () => {
         const valid = await isWaNumber(jid)
         if (!valid) return void res.status(404).json({ error: 'Number not available on WhatsApp' })
         {
-            const status = await client.fetchStatus(jid);
-            var ppUrl = "Cannot ";
+            var status = "N/A";
             try {
-              ppUrl = await client.profilePictureUrl(jid,"image");
-          } catch (_) {
-              ppUrl = "N/A"
-          }
-            const profile = await client.getBusinessProfile(jid);
+                status = await client.fetchStatus(jid);
+            } catch (_) {
+                status = "N/A"
+            }
+
+
+            var ppUrl = "N/A";
+            try {
+                ppUrl = await client.profilePictureUrl(jid, "image");
+            } catch (_) {
+                ppUrl = "N/A"
+            }
+            var profile = "N/A"
+            try {
+                profile = await client.getBusinessProfile(jid);
+            } catch (_) {
+                profile = "N/A"
+            }
             return void res.status(200).json(
                 {
                     available: true,
